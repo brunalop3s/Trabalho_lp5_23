@@ -16,6 +16,8 @@ public class JFrmMenuPrincipal extends javax.swing.JFrame {
      */
     public JFrmMenuPrincipal() {
         initComponents();
+        setTitle("Tela de Menu");
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -124,7 +126,7 @@ public class JFrmMenuPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMnuUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMnuUsuarioActionPerformed
-        JDlgUsuarioNovoIA jDlgUsuario = new JDlgUsuarioNovoIA(null, true);
+        JDlgUsuario jDlgUsuario = new JDlgUsuario(null, true);
         jDlgUsuario.setVisible(true);
     }//GEN-LAST:event_jMnuUsuarioActionPerformed
 
@@ -134,7 +136,7 @@ public class JFrmMenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMnuFuncionarioActionPerformed
 
     private void jMnuFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMnuFornecedorActionPerformed
-        JDlgFornecedorNovo jDlgFornecedor = new JDlgFornecedorNovo(null, true);
+        JDlgFornecedor jDlgFornecedor = new JDlgFornecedor(null, true);
         jDlgFornecedor.setVisible(true);
     }//GEN-LAST:event_jMnuFornecedorActionPerformed
 
@@ -144,13 +146,13 @@ public class JFrmMenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMnuProdutoActionPerformed
 
     private void jMnuCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMnuCompraActionPerformed
-        JDlgCompra jDlgCompra = new JDlgCompra(null, true);
-        jDlgCompra.setVisible(true);
+//        JDlgCompra jDlgCompra = new JDlgCompra(null, true);
+//        jDlgCompra.setVisible(true);
     }//GEN-LAST:event_jMnuCompraActionPerformed
 
     private void jMnuCompra_ProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMnuCompra_ProdutoActionPerformed
-        JDlgCompraProduto jDlgCompraProduto = new JDlgCompraProduto(null, true);
-        jDlgCompraProduto.setVisible(true);
+//        JDlgCompraProduto jDlgCompraProduto = new JDlgCompraProduto(null, true);
+//        jDlgCompraProduto.setVisible(true);
     }//GEN-LAST:event_jMnuCompra_ProdutoActionPerformed
 
     /**

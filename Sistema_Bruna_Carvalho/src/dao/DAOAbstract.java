@@ -22,13 +22,14 @@ public abstract class DAOAbstract {
     session = sessionFactory.openSession();
         
     }
-    
+    //metodos do DAO
     //posso inserir qualquer coisa --- generico pai de todos Object 
     public abstract void insert(Object object);
     public abstract void update(Object object);
     public abstract void delete(Object object);
     public abstract Object list(int id);
     public abstract List listAll();
+  
 
     
 }

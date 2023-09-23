@@ -23,13 +23,13 @@ public class CompraProdutoBlf  implements java.io.Serializable {
      private int idCompraProdutoBlf;
      private CompraBlf compraBlf;
      private ProdutoBlf produtoBlf;
-     private String quantidadeBlf;
-     private String valorUnitarioBlf;
+     private int quantidadeBlf;
+     private int valorUnitarioBlf;
 
     public CompraProdutoBlf() {
     }
 
-    public CompraProdutoBlf(int idCompraProdutoBlf, CompraBlf compraBlf, ProdutoBlf produtoBlf, String quantidadeBlf, String valorUnitarioBlf) {
+    public CompraProdutoBlf(int idCompraProdutoBlf, CompraBlf compraBlf, ProdutoBlf produtoBlf, int quantidadeBlf, int valorUnitarioBlf) {
        this.idCompraProdutoBlf = idCompraProdutoBlf;
        this.compraBlf = compraBlf;
        this.produtoBlf = produtoBlf;
@@ -71,21 +71,21 @@ public class CompraProdutoBlf  implements java.io.Serializable {
 
     
     @Column(name="quantidade_Blf", nullable=false, length=45)
-    public String getQuantidadeBlf() {
+    public int getQuantidadeBlf() {
         return this.quantidadeBlf;
     }
     
-    public void setQuantidadeBlf(String quantidadeBlf) {
+    public void setQuantidadeBlf(int quantidadeBlf) {
         this.quantidadeBlf = quantidadeBlf;
     }
 
     
     @Column(name="valorUnitario_Blf", nullable=false, length=45)
-    public String getValorUnitarioBlf() {
+    public int getValorUnitarioBlf() {
         return this.valorUnitarioBlf;
     }
     
-    public void setValorUnitarioBlf(String valorUnitarioBlf) {
+    public void setValorUnitarioBlf(int valorUnitarioBlf) {
         this.valorUnitarioBlf = valorUnitarioBlf;
     }
 

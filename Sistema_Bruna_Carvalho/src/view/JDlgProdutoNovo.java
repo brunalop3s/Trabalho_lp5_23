@@ -5,6 +5,12 @@
  */
 package view;
 
+import bean.ProdutoBlf;
+import bean.UsuarioBlf;
+import dao.Produto_DAO;
+import dao.Usuario_DAO;
+import java.util.List;
+import javax.swing.JTable;
 import tools.Util;
 
 /**
@@ -12,18 +18,32 @@ import tools.Util;
  * @author Bruna Lopes Freitas
  */
 public class JDlgProdutoNovo extends javax.swing.JDialog {
+        
+        
+    Produto_DAO produto_DAO;
+    ProdutoBlf produtoBlf;
+    ProdutoControle produtoControle;
+    private JDlgProdutoNovoIA jDlgProdutoNovoIA;
 
     /**
      * Creates new form JDlgCliente
      */
-        JDlgProdutoNovoIA  jDlgProdutoNovoIA = new  JDlgProdutoNovoIA(null, true);
+        
     public JDlgProdutoNovo(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setTitle("Cadastro de Produto");
         setLocationRelativeTo(null);
+        
+         jDlgProdutoNovoIA = new JDlgProdutoNovoIA(null, true);
+        produtoControle = new ProdutoControle();
+        produto_DAO = new Produto_DAO();
+        List lista = produto_DAO.listAll();
+        produtoControle.setList(lista);
+        jTablel.setModel(produtoControle);
     }
 
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -34,7 +54,7 @@ public class JDlgProdutoNovo extends javax.swing.JDialog {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTablel = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         jBtnIncluir = new javax.swing.JButton();
         jBtnAlterar = new javax.swing.JButton();
@@ -42,7 +62,7 @@ public class JDlgProdutoNovo extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTablel.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -53,7 +73,7 @@ public class JDlgProdutoNovo extends javax.swing.JDialog {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jTablel);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -102,20 +122,36 @@ public class JDlgProdutoNovo extends javax.swing.JDialog {
     private void jBtnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnIncluirActionPerformed
         // TODO add your handling code here:
         jDlgProdutoNovoIA.setTitle("Inclusão");
+         
         jDlgProdutoNovoIA.setVisible(true);
+        List lista = produto_DAO.listAll();
+        produtoControle.setList(lista);
 
     }//GEN-LAST:event_jBtnIncluirActionPerformed
 
     private void jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarActionPerformed
         // TODO add your handling code here:
         jDlgProdutoNovoIA.setTitle("Alteração");
+        int rowSel = jTablel.getSelectedRow();
+        ProdutoBlf produtoBlf =  produtoControle.getBean(rowSel);
+        jDlgProdutoNovoIA.beanView(produtoBlf);
+        
         jDlgProdutoNovoIA.setVisible(true);
     }//GEN-LAST:event_jBtnAlterarActionPerformed
 
     private void jBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirActionPerformed
         // TODO add your handling code here:
         if (Util.perguntar("Deseja execluir o registro") == true ) {
-           } else {Util.mensagem("Exclusão cancelada");}
+            int sel = jTablel.getSelectedRow();
+            produtoBlf = produtoControle.getBean(sel);
+            produto_DAO.delete(produtoBlf);
+            //atualizar a lista no jtable
+            List lista = produto_DAO.listAll();
+            produtoControle.setList(lista);
+            
+           } else {
+            Util.mensagem("Exclusão cancelada");
+        }
         
     }//GEN-LAST:event_jBtnExcluirActionPerformed
 
@@ -170,6 +206,6 @@ public class JDlgProdutoNovo extends javax.swing.JDialog {
     private javax.swing.JButton jBtnIncluir;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTablel;
     // End of variables declaration//GEN-END:variables
 }

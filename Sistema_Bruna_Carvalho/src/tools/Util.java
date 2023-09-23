@@ -5,12 +5,19 @@
  */
 package tools;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
+import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.text.MaskFormatter;
+import static tools.Util.dateStr;
 
 /**
  *
@@ -58,17 +65,21 @@ public class Util {
          }
      
      }
+     
+     
+  
+    
      //cadeia de caracter
      public static void mensagem(String cadeia){
            JOptionPane.showMessageDialog(null, cadeia);
      }
      
      public static boolean perguntar (String cadeia){
-         JOptionPane.showConfirmDialog(null, "Confirma exclusão ?",
-               "Excluir", JOptionPane.YES_NO_OPTION);
-         return false;
+          int resp = JOptionPane.showConfirmDialog(null, cadeia, "Perguntar", JOptionPane.YES_NO_OPTION);
+          return resp == JOptionPane.YES_OPTION;
            
      }
+       
      
      public static int strInt(String cad){
            return Integer.valueOf(cad);
@@ -87,14 +98,22 @@ public class Util {
      }
       
        public static Date strDate(String cad){
+           SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+           try {
+               return formato.parse(cad);
+           
+           } catch (ParseException ex){
+               Logger.getLogger(Util.class.getName()).log(Level.SEVERE, null, ex);
+           }
            return null;
      }
+       
         public static String dateStr (Date num){
-           return "";
+            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+           return formato.format(num);
      }
      
-     
-     
 }
+
 
 

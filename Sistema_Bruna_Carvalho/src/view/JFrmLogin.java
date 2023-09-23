@@ -5,6 +5,9 @@
  */
 package view;
 
+import dao.Usuario_DAO;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Bruna Lopes Freitas
@@ -14,7 +17,14 @@ public class JFrmLogin extends javax.swing.JFrame {
     /**
      * Creates new form JFrmLogin
      */
-  
+    
+    public JFrmLogin() {
+        initComponents();
+        setTitle("Tela de Login");
+        setLocationRelativeTo(null);
+    }
+        private int tentativas;
+
    
 
     /**
@@ -103,12 +113,39 @@ public class JFrmLogin extends javax.swing.JFrame {
 
     private void jBtnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnEntrarActionPerformed
         // TODO add your handling code here:
+        String apelidoBlf = jTxtUsuario.getText();
+        String senhaBlf = new String(jPwfSenha.getPassword());
+
+        Usuario_DAO usuario_DAO = new Usuario_DAO();
+
+        if (usuario_DAO.fazerLogin(apelidoBlf, senhaBlf) != null) {
+
+            JOptionPane.showMessageDialog(null, "Usuário logado com sucesso!");
+
+            JFrmMenuPrincipal jFrmMenuPrincipal = new JFrmMenuPrincipal();
+            jFrmMenuPrincipal.setVisible(true);
+
+            tentativas = 0;
+            setVisible(false);
+        } else {
+            tentativas++;
+            JOptionPane.showMessageDialog(null, "Usuário ou senha inválidos" + tentativas + "/2");
+
+            if (tentativas >= 2) {
+                JOptionPane.showMessageDialog(null, "Limte de tentativas Excedido.");
+                System.exit(0);
+            }
+        }
+        
+        
+        
+        
     }//GEN-LAST:event_jBtnEntrarActionPerformed
 
     private void jBtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelarActionPerformed
         // TODO add your handling code here:
 
-     
+        setVisible(false);
     }//GEN-LAST:event_jBtnCancelarActionPerformed
 
     /**

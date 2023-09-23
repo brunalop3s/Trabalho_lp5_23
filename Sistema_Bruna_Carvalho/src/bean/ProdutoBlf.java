@@ -24,39 +24,25 @@ public class ProdutoBlf  implements java.io.Serializable {
 
      private int idProdutoBlf;
      private String nomeBlf;
-     private String categoriaBlf;
      private String marcaBlf;
      private double precoBlf;
-     private String generoBlf;
      private String tamanhoBlf;
      private int quantidadeBlf;
-     private Set compraProdutoBlfs = new HashSet(0);
+     
 
     public ProdutoBlf() {
     }
 
 	
-    public ProdutoBlf(int idProdutoBlf, String nomeBlf, String categoriaBlf, String marcaBlf, double precoBlf, String generoBlf, String tamanhoBlf, int quantidadeBlf) {
+    public ProdutoBlf(int idProdutoBlf, String nomeBlf, String marcaBlf, double precoBlf, String tamanhoBlf, int quantidadeBlf) {
         this.idProdutoBlf = idProdutoBlf;
         this.nomeBlf = nomeBlf;
-        this.categoriaBlf = categoriaBlf;
         this.marcaBlf = marcaBlf;
         this.precoBlf = precoBlf;
-        this.generoBlf = generoBlf;
         this.tamanhoBlf = tamanhoBlf;
         this.quantidadeBlf = quantidadeBlf;
     }
-    public ProdutoBlf(int idProdutoBlf, String nomeBlf, String categoriaBlf, String marcaBlf, double precoBlf, String generoBlf, String tamanhoBlf, int quantidadeBlf, Set compraProdutoBlfs) {
-       this.idProdutoBlf = idProdutoBlf;
-       this.nomeBlf = nomeBlf;
-       this.categoriaBlf = categoriaBlf;
-       this.marcaBlf = marcaBlf;
-       this.precoBlf = precoBlf;
-       this.generoBlf = generoBlf;
-       this.tamanhoBlf = tamanhoBlf;
-       this.quantidadeBlf = quantidadeBlf;
-       this.compraProdutoBlfs = compraProdutoBlfs;
-    }
+ 
    
      @Id 
 
@@ -80,17 +66,7 @@ public class ProdutoBlf  implements java.io.Serializable {
         this.nomeBlf = nomeBlf;
     }
 
-    
-    @Column(name="categoria_blf", nullable=false, length=20)
-    public String getCategoriaBlf() {
-        return this.categoriaBlf;
-    }
-    
-    public void setCategoriaBlf(String categoriaBlf) {
-        this.categoriaBlf = categoriaBlf;
-    }
-
-    
+ 
     @Column(name="marca_blf", nullable=false, length=30)
     public String getMarcaBlf() {
         return this.marcaBlf;
@@ -109,18 +85,7 @@ public class ProdutoBlf  implements java.io.Serializable {
     public void setPrecoBlf(double precoBlf) {
         this.precoBlf = precoBlf;
     }
-
-    
-    @Column(name="genero_blf", nullable=false, length=1)
-    public String getGeneroBlf() {
-        return this.generoBlf;
-    }
-    
-    public void setGeneroBlf(String generoBlf) {
-        this.generoBlf = generoBlf;
-    }
-
-    
+  
     @Column(name="tamanho_blf", nullable=false, length=3)
     public String getTamanhoBlf() {
         return this.tamanhoBlf;
@@ -139,18 +104,6 @@ public class ProdutoBlf  implements java.io.Serializable {
     public void setQuantidadeBlf(int quantidadeBlf) {
         this.quantidadeBlf = quantidadeBlf;
     }
-
-@OneToMany(fetch=FetchType.LAZY, mappedBy="produtoBlf")
-    public Set getCompraProdutoBlfs() {
-        return this.compraProdutoBlfs;
-    }
-    
-    public void setCompraProdutoBlfs(Set compraProdutoBlfs) {
-        this.compraProdutoBlfs = compraProdutoBlfs;
-    }
-
-
-
 
 }
 

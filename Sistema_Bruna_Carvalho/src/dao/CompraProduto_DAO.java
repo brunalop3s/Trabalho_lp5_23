@@ -22,26 +22,24 @@ public class CompraProduto_DAO extends DAOAbstract{
     public void insert(Object object) {
         session.beginTransaction();
         session.save(object);
-        session.flush();
-        session.clear();
         session.getTransaction().commit();
     }
 
     @Override
     public void update(Object object) {
         session.beginTransaction();
-        session.update(object);
         session.flush();
         session.clear();
+        session.update(object);
         session.getTransaction().commit();
     }
 
     @Override
     public void delete(Object object) {
         session.beginTransaction();
-        session.delete(object);
         session.flush();
         session.clear();
+        session.delete(object);
         session.getTransaction().commit();
     }
 

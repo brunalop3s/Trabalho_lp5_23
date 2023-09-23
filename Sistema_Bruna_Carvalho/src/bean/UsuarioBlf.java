@@ -32,7 +32,7 @@ public class UsuarioBlf  implements java.io.Serializable {
      private String senhaBlf;
      private int nivelBlf;
      private String ativoBlf;
-     private Set compraBlfs = new HashSet(0);
+     
 
     public UsuarioBlf() {
     }
@@ -48,17 +48,7 @@ public class UsuarioBlf  implements java.io.Serializable {
         this.nivelBlf = nivelBlf;
         this.ativoBlf = ativoBlf;
     }
-    public UsuarioBlf(int idUsuarioBlf, String nomeBlf, String apelidoBlf, String cpfBlf, Date dataNascimentoBlf, String senhaBlf, int nivelBlf, String ativoBlf, Set compraBlfs) {
-       this.idUsuarioBlf = idUsuarioBlf;
-       this.nomeBlf = nomeBlf;
-       this.apelidoBlf = apelidoBlf;
-       this.cpfBlf = cpfBlf;
-       this.dataNascimentoBlf = dataNascimentoBlf;
-       this.senhaBlf = senhaBlf;
-       this.nivelBlf = nivelBlf;
-       this.ativoBlf = ativoBlf;
-       this.compraBlfs = compraBlfs;
-    }
+    
    
      @Id 
 
@@ -141,17 +131,6 @@ public class UsuarioBlf  implements java.io.Serializable {
     public void setAtivoBlf(String ativoBlf) {
         this.ativoBlf = ativoBlf;
     }
-
-@OneToMany(fetch=FetchType.LAZY, mappedBy="usuarioBlf")
-    public Set getCompraBlfs() {
-        return this.compraBlfs;
-    }
-    
-    public void setCompraBlfs(Set compraBlfs) {
-        this.compraBlfs = compraBlfs;
-    }
-
-
 
 
 }

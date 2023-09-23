@@ -5,6 +5,12 @@
  */
 package view;
 
+import bean.FuncionarioBlf;
+import bean.ProdutoBlf;
+import bean.UsuarioBlf;
+import dao.Funcionario_DAO;
+import dao.Usuario_DAO;
+import java.util.List;
 import tools.Util;
 
 /**
@@ -12,14 +18,32 @@ import tools.Util;
  * @author Bruna Lopes Freitas
  */
 public class JDlgFuncionarioNovo extends javax.swing.JDialog {
-
+    
+    
+    Funcionario_DAO funcionario_DAO;
+    FuncionarioBlf funcionarioBlf;
+    FuncionarioControle funcionarioControle;
+    private JDlgFuncionarioNovoIA jDlgFuncionarioNovoIA;
     /**
      * Creates new form JDlgFuncionario
      */
-    JDlgFuncionarioNovoIA jDlgFuncionarioNovoIA = new JDlgFuncionarioNovoIA(null, true);
     public JDlgFuncionarioNovo(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setLocationRelativeTo(null);
+        
+        jDlgFuncionarioNovoIA = new JDlgFuncionarioNovoIA(null, true);
+        funcionarioControle = new FuncionarioControle();
+        funcionario_DAO = new Funcionario_DAO();
+        List lista = funcionario_DAO.listAll();
+        funcionarioControle.setList(lista);
+        jTable1.setModel(funcionarioControle);
+        
+        
+            
+        
+        
+       
     }
 
     /**
@@ -99,20 +123,37 @@ public class JDlgFuncionarioNovo extends javax.swing.JDialog {
 
     private void jBtnIncluir2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnIncluir2ActionPerformed
         // TODO add your handling code here:
-        jDlgFuncionarioNovoIA.setTitle("Inclusão");
+       jDlgFuncionarioNovoIA.setTitle("Inclusão");
+         
         jDlgFuncionarioNovoIA.setVisible(true);
+        List lista = funcionario_DAO.listAll();
+        funcionarioControle.setList(lista);
 
     }//GEN-LAST:event_jBtnIncluir2ActionPerformed
 
     private void jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarActionPerformed
         // TODO add your handling code here:
-        jDlgFuncionarioNovoIA.setTitle("Alteração");
+       jDlgFuncionarioNovoIA.setTitle("Alteração");
+        int rowSel = jTable1.getSelectedRow();
+        FuncionarioBlf funcionarioBlf =  funcionarioControle.getBean(rowSel);
+        jDlgFuncionarioNovoIA.beanView(funcionarioBlf);
+        
         jDlgFuncionarioNovoIA.setVisible(true);
     }//GEN-LAST:event_jBtnAlterarActionPerformed
 
     private void jBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirActionPerformed
         // TODO add your handling code here:
-        if (Util.perguntar("Deseja Excluir o usuário?")== true){};
+         if (Util.perguntar("Deseja execluir o registro") == true ) {
+            int sel = jTable1.getSelectedRow();
+            funcionarioBlf = funcionarioControle.getBean(sel);
+            funcionario_DAO.delete(funcionarioBlf);
+            //atualizar a lista no jtable
+            List lista = funcionario_DAO.listAll();
+            funcionarioControle.setList(lista);
+            
+           } else {
+            Util.mensagem("Exclusão cancelada");
+        }
     }//GEN-LAST:event_jBtnExcluirActionPerformed
 
     /**

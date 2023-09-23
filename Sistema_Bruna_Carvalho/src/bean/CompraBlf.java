@@ -34,7 +34,7 @@ public class CompraBlf  implements java.io.Serializable {
      private double totalCompraBlf;
      private String statusPagamentoBlf;
      private String metodoPagamentoBlf;
-     private Set compraProdutoBlfs = new HashSet(0);
+    
 
     public CompraBlf() {
     }
@@ -49,19 +49,8 @@ public class CompraBlf  implements java.io.Serializable {
         this.statusPagamentoBlf = statusPagamentoBlf;
         this.metodoPagamentoBlf = metodoPagamentoBlf;
     }
-    public CompraBlf(int idCompraBlf, FornecedorBlf fornecedorBlf, UsuarioBlf usuarioBlf, Date dataCompraBlf, double totalCompraBlf, String statusPagamentoBlf, String metodoPagamentoBlf, Set compraProdutoBlfs) {
-       this.idCompraBlf = idCompraBlf;
-       this.fornecedorBlf = fornecedorBlf;
-       this.usuarioBlf = usuarioBlf;
-       this.dataCompraBlf = dataCompraBlf;
-       this.totalCompraBlf = totalCompraBlf;
-       this.statusPagamentoBlf = statusPagamentoBlf;
-       this.metodoPagamentoBlf = metodoPagamentoBlf;
-       this.compraProdutoBlfs = compraProdutoBlfs;
-    }
-   
-     @Id 
 
+    @Id 
     
     @Column(name="id_compra_blf", unique=true, nullable=false)
     public int getIdCompraBlf() {
@@ -131,19 +120,4 @@ public class CompraBlf  implements java.io.Serializable {
     public void setMetodoPagamentoBlf(String metodoPagamentoBlf) {
         this.metodoPagamentoBlf = metodoPagamentoBlf;
     }
-
-@OneToMany(fetch=FetchType.LAZY, mappedBy="compraBlf")
-    public Set getCompraProdutoBlfs() {
-        return this.compraProdutoBlfs;
-    }
-    
-    public void setCompraProdutoBlfs(Set compraProdutoBlfs) {
-        this.compraProdutoBlfs = compraProdutoBlfs;
-    }
-
-
-
-
 }
-
-

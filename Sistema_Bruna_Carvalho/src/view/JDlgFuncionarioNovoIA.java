@@ -5,11 +5,31 @@
  */
 package view;
 
+import bean.FuncionarioBlf;
+import bean.ProdutoBlf;
+import dao.Funcionario_DAO;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.text.DefaultFormatterFactory;
+import javax.swing.text.MaskFormatter;
+
 /**
  *
  * @author Bruna Lopes Freitas
  */
 public class JDlgFuncionarioNovoIA extends javax.swing.JDialog {
+    
+    Funcionario_DAO funcionario_DAO;
+    FuncionarioControle funcionarioControle;
+    
+    MaskFormatter mascaraCpf;  
+    MaskFormatter mascaraDataNascimento;
+    MaskFormatter mascaraTelefoneResidencial;
+    MaskFormatter mascaraCelular;
+    MaskFormatter mascaraCep;
 
     /**
      * Creates new form JDlgFuncionarioNovoIA
@@ -17,7 +37,103 @@ public class JDlgFuncionarioNovoIA extends javax.swing.JDialog {
     public JDlgFuncionarioNovoIA(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setLocationRelativeTo(null);
+        
+        funcionarioControle = new FuncionarioControle();
+        funcionario_DAO = new Funcionario_DAO();
+        List lista = funcionario_DAO.listAll();
+        funcionarioControle.setList(lista);
+        
+         try {
+            
+             mascaraCpf = new MaskFormatter("###.###.###-##");
+             mascaraDataNascimento = new MaskFormatter("##/##/####");
+             mascaraTelefoneResidencial = new MaskFormatter("(##) ####-#### ");
+             mascaraCelular = new MaskFormatter("(##) ####-#### ");
+             mascaraCep = new MaskFormatter("#####-###");
+            
+             
+        } catch ( ParseException exc) {
+           
+        }
+         
+       jFmtCpf.setFormatterFactory( new DefaultFormatterFactory( mascaraCpf )); 
+       jFmtDataNascimento.setFormatterFactory( new DefaultFormatterFactory(mascaraDataNascimento) );
+       jFmtTelefoneResidencial.setFormatterFactory( new DefaultFormatterFactory(mascaraTelefoneResidencial));   
+       jFmtCelular.setFormatterFactory(new DefaultFormatterFactory(mascaraCelular));
+       jFmtCep.setFormatterFactory(new DefaultFormatterFactory(mascaraCep));
+     
     }
+
+    
+    
+    
+    public FuncionarioBlf viewBean() {
+        FuncionarioBlf funcionarioBlf = new FuncionarioBlf();
+        int id = Integer.valueOf(jTxtCodigo.getText());
+        
+        funcionarioBlf.setIdFuncionarioBlf(id);
+        funcionarioBlf.setNomeBlf(jTxtNome.getText());
+        funcionarioBlf.setApelidoBlf(jTxtApelido.getText());
+        
+        //funcionarioBlf.setSexoBlf(jCboSexo.getSelectedIndex());
+
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        try {
+            funcionarioBlf.setDataNascimentoBlf(formato.parse(jFmtDataNascimento.getText()));
+        } catch (ParseException ex) {
+            Logger.getLogger(JDlgUsuario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        funcionarioBlf.setCpfBlf(jFmtCpf.getText());
+        funcionarioBlf.setCelularBlf(jFmtCelular.getText());
+        funcionarioBlf.setTelefoneResidencialBlf(jFmtTelefoneResidencial.getText());
+
+        funcionarioBlf.setCepBlf(jFmtCep.getText());
+        funcionarioBlf.setEnderecoBlf(jTxtEndereço.getText());
+        funcionarioBlf.setBairroBlf(jTxtBairro.getText());
+        funcionarioBlf.setCidadeBlf(jTxtCidade.getText());
+        funcionarioBlf.setUfBlf(jTxtUf.getText());
+        funcionarioBlf.setEmailBlf(jTxtEmail.getText());
+   
+        if (jCheckBox1.isSelected() == true) {
+            funcionarioBlf.setAtivoBlf("S");
+        } else {
+            funcionarioBlf.setAtivoBlf("N");
+        }
+        return funcionarioBlf;
+    }
+      
+       
+        public void beanView( FuncionarioBlf funcionarioBlf) {
+        String cad = String.valueOf(funcionarioBlf.getIdFuncionarioBlf());
+        jTxtCodigo.setText(cad);        
+        jTxtNome.setText(funcionarioBlf.getNomeBlf());
+        jTxtApelido.setText(funcionarioBlf.getApelidoBlf());
+        //jCboSexo.setSelectedIndex(funcionarioBlf.getSexoBlf());
+        
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        jFmtDataNascimento.setText( formato.format(funcionarioBlf.getDataNascimentoBlf()));
+        
+        jFmtCpf.setText(funcionarioBlf.getCpfBlf());
+        jFmtCelular.setText(funcionarioBlf.getCelularBlf());
+        jFmtTelefoneResidencial.setText(funcionarioBlf.getTelefoneResidencialBlf());
+        
+        jFmtCep.setText(funcionarioBlf.getCepBlf());
+        jTxtEndereço.setText(funcionarioBlf.getEnderecoBlf());
+        jTxtBairro.setText(funcionarioBlf.getBairroBlf());
+        jTxtCidade.setText(funcionarioBlf.getCidadeBlf());
+        jTxtUf.setText(funcionarioBlf.getUfBlf());
+        jTxtEmail.setText(funcionarioBlf.getEmailBlf());
+        
+         if (funcionarioBlf.getAtivoBlf().equals("S") == true) {
+            jCheckBox1.setSelected(true);
+        } else {
+            jCheckBox1.setSelected(false);
+        }
+        
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -36,7 +152,7 @@ public class JDlgFuncionarioNovoIA extends javax.swing.JDialog {
         jFmtTelefoneResidencial = new javax.swing.JFormattedTextField();
         jTxtNome = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jCboGenero = new javax.swing.JComboBox<>();
+        jCboSexo = new javax.swing.JComboBox<>();
         jFmtCep = new javax.swing.JFormattedTextField();
         jCheckBox1 = new javax.swing.JCheckBox();
         jLabel8 = new javax.swing.JLabel();
@@ -88,7 +204,7 @@ public class JDlgFuncionarioNovoIA extends javax.swing.JDialog {
 
         jLabel7.setText("Cep");
 
-        jCboGenero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Masculino", "Feminino", "Não-binário", "Prefiro não dizer" }));
+        jCboSexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Masculino", "Feminino", "Não-binário", "Prefiro não dizer" }));
 
         jCheckBox1.setText("Ativo");
 
@@ -104,7 +220,7 @@ public class JDlgFuncionarioNovoIA extends javax.swing.JDialog {
 
         jLabel1.setText("Nome");
 
-        jLabel2.setText("Gênero");
+        jLabel2.setText("Sexo");
 
         jLabel3.setText("Data de Nascimento");
 
@@ -135,7 +251,7 @@ public class JDlgFuncionarioNovoIA extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addGap(18, 18, 18)
-                        .addComponent(jCboGenero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jCboSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addGap(18, 18, 18)
@@ -204,7 +320,7 @@ public class JDlgFuncionarioNovoIA extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jCboGenero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jCboSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(9, 9, 9)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jFmtDataNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -246,7 +362,11 @@ public class JDlgFuncionarioNovoIA extends javax.swing.JDialog {
 
     private void jBtnOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnOKActionPerformed
         // TODO add your handling code here:
+         FuncionarioBlf funcionarioBlf = viewBean();
+          funcionario_DAO.insert(funcionarioBlf);
+          funcionario_DAO.update(funcionarioBlf);
         setVisible(false);
+        
     }//GEN-LAST:event_jBtnOKActionPerformed
 
     private void jBtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelarActionPerformed
@@ -299,7 +419,7 @@ public class JDlgFuncionarioNovoIA extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBtnCancelar;
     private javax.swing.JButton jBtnOK;
-    private javax.swing.JComboBox<String> jCboGenero;
+    private javax.swing.JComboBox<String> jCboSexo;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JFormattedTextField jFmtCelular;
     private javax.swing.JFormattedTextField jFmtCep;

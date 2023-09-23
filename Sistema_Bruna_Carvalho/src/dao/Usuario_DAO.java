@@ -21,26 +21,24 @@ public class Usuario_DAO extends DAOAbstract{
     public void insert(Object object) {
         session.beginTransaction();
         session.save(object);
-        session.flush();
-        session.clear();
         session.getTransaction().commit();
     }
 
     @Override
     public void update(Object object) {
         session.beginTransaction();
-        session.update(object);
         session.flush();
         session.clear();
+        session.update(object);
         session.getTransaction().commit();
     }
 
     @Override
     public void delete(Object object) {
         session.beginTransaction();
-        session.delete(object);
         session.flush();
         session.clear();
+        session.delete(object);
         session.getTransaction().commit();
     }
 
@@ -63,5 +61,25 @@ public class Usuario_DAO extends DAOAbstract{
        session.getTransaction().commit();
        return (ArrayList) lista;
     }
+    
+    public UsuarioBlf fazerLogin(String apelidoBlf, String senhaBlf) {
+    try {
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(UsuarioBlf.class);
+        criteria.add(Restrictions.eq("apelidoBlf", apelidoBlf));
+        criteria.add(Restrictions.eq("senhaBlf", senhaBlf));
+
+        UsuarioBlf usuarioBlf = (UsuarioBlf) criteria.uniqueResult();
+
+        session.getTransaction().commit();
+
+        return usuarioBlf;
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+
+    return null;
+}
+
     
 }

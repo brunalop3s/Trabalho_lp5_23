@@ -31,7 +31,7 @@ public class FornecedorBlf  implements java.io.Serializable {
      private String ufBlf;
      private String cepBlf;
      private String emailBlf;
-     private Set compraBlfs = new HashSet(0);
+     
 
     public FornecedorBlf() {
     }
@@ -49,20 +49,7 @@ public class FornecedorBlf  implements java.io.Serializable {
         this.cepBlf = cepBlf;
         this.emailBlf = emailBlf;
     }
-    public FornecedorBlf(int idFornecedorBlf, String cnpjBlf, String empresaOuPessoaBlf, String telefoneBlf, String enderecoBlf, String bairroBlf, String cidadeBlf, String ufBlf, String cepBlf, String emailBlf, Set compraBlfs) {
-       this.idFornecedorBlf = idFornecedorBlf;
-       this.cnpjBlf = cnpjBlf;
-       this.empresaOuPessoaBlf = empresaOuPessoaBlf;
-       this.telefoneBlf = telefoneBlf;
-       this.enderecoBlf = enderecoBlf;
-       this.bairroBlf = bairroBlf;
-       this.cidadeBlf = cidadeBlf;
-       this.ufBlf = ufBlf;
-       this.cepBlf = cepBlf;
-       this.emailBlf = emailBlf;
-       this.compraBlfs = compraBlfs;
-    }
-   
+    
      @Id 
 
     
@@ -164,16 +151,6 @@ public class FornecedorBlf  implements java.io.Serializable {
     public void setEmailBlf(String emailBlf) {
         this.emailBlf = emailBlf;
     }
-
-@OneToMany(fetch=FetchType.LAZY, mappedBy="fornecedorBlf")
-    public Set getCompraBlfs() {
-        return this.compraBlfs;
-    }
-    
-    public void setCompraBlfs(Set compraBlfs) {
-        this.compraBlfs = compraBlfs;
-    }
-
 
 
 

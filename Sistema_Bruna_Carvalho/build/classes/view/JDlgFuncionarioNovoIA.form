@@ -39,7 +39,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jCboGenero" min="-2" max="-2" attributes="0"/>
+                      <Component id="jCboSexo" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
@@ -125,7 +125,7 @@
               <EmptySpace max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jCboGenero" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jCboSexo" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -225,7 +225,7 @@
         <Property name="text" type="java.lang.String" value="Cep"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JComboBox" name="jCboGenero">
+    <Component class="javax.swing.JComboBox" name="jCboSexo">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="4">
@@ -291,7 +291,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
-        <Property name="text" type="java.lang.String" value="G&#xea;nero"/>
+        <Property name="text" type="java.lang.String" value="Sexo"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
