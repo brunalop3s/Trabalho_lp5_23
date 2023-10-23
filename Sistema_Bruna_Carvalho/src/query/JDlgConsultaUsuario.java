@@ -51,6 +51,8 @@ public class JDlgConsultaUsuario extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         jTxtNome = new javax.swing.JTextField();
         jBtnConsultar = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jTxtCpf = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
 
@@ -80,6 +82,8 @@ public class JDlgConsultaUsuario extends javax.swing.JDialog {
             }
         });
 
+        jLabel2.setText("Cpf");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -87,24 +91,31 @@ public class JDlgConsultaUsuario extends javax.swing.JDialog {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(jTxtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(41, 41, 41)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addComponent(jTxtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jBtnConsultar))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jTxtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 231, Short.MAX_VALUE)
-                        .addComponent(jBtnConsultar)))
+                        .addComponent(jLabel2)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTxtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBtnConsultar))
+                    .addComponent(jBtnConsultar)
+                    .addComponent(jTxtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(23, Short.MAX_VALUE))
         );
 
@@ -126,7 +137,7 @@ public class JDlgConsultaUsuario extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 728, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -140,12 +151,28 @@ public class JDlgConsultaUsuario extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBtnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConsultarActionPerformed
-         
-         List lista = usuario_DAO.listNome(jTxtNome.getText());
-         usuarioControlle.setList(lista);
-       
-         
-         
+        if(jTxtNome.getText().equals("") && jTxtCpf.getText().equals("")){
+             List lista = usuario_DAO.listAll();
+             usuarioControlle.setList(lista);
+              
+                } else{
+                     if(!jTxtNome.getText().equals("") && !jTxtCpf.getText().equals("")){
+                     List lista = usuario_DAO.listNomeCpf(jTxtNome.getText(), jTxtCpf.getText());
+                     usuarioControlle.setList(lista);
+                
+                    } else{
+                         if(!jTxtNome.getText().equals("")){
+                         List lista = usuario_DAO.listNome(jTxtNome.getText());
+                         usuarioControlle.setList(lista);
+                      
+                        } else{
+                         if(!jTxtCpf.getText().equals("")){
+                         List lista = usuario_DAO.listCpf(jTxtCpf.getText());
+                         usuarioControlle.setList(lista);
+                    }
+                   }
+                }    
+            }       
     }//GEN-LAST:event_jBtnConsultarActionPerformed
 
     /**
@@ -193,11 +220,13 @@ public class JDlgConsultaUsuario extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBtnConsultar;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
+    private javax.swing.JTextField jTxtCpf;
     private javax.swing.JTextField jTxtNome;
     // End of variables declaration//GEN-END:variables
 

@@ -84,6 +84,17 @@ public class Usuario_DAO extends DAOAbstract{
        
     }
     
+    public List listNomeCpf(String nomefBlf, String cpfBlf){
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(UsuarioBlf.class);
+         criteria.add(Restrictions.ilike("nomeBlf","%" + cpfBlf + "%"));
+        criteria.add(Restrictions.ilike("nomeBlf","%" + cpfBlf + "%"));
+        List lista = criteria.list();
+        session.getTransaction().commit();
+        return lista;
+       
+    }
+    
     public UsuarioBlf fazerLogin(String apelidoBlf, String senhaBlf) {
     try {
         session.beginTransaction();
