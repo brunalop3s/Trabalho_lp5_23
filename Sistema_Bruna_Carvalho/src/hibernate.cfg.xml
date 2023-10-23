@@ -43,11 +43,11 @@ Contributor(s):
   <session-factory>
     <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
     <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-    <property name="hibernate.connection.url">jdbc:mysql://127.0.0.1:3306/db_bruna_carvalho?zeroDateTimeBehavior=convertToNull</property>
-    <property name="hibernate.connection.username">root</property>
-    <!--property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+    <!--property name="hibernate.connection.url">jdbc:mysql://127.0.0.1:3306/db_bruna_carvalho?zeroDateTimeBehavior=convertToNull</property>
+    <property name="hibernate.connection.username">root</property-->
     <property name="hibernate.connection.url">jdbc:mysql://10.7.0.51:33062/db_bruna_carvalho?zeroDateTimeBehavior=convertToNull</property>
-    <property name="hibernate.connection.username">bruna_carvalho</property-->
+    <property name="hibernate.connection.username">bruna_carvalho</property>
+    <property name="hibernate.connection.password">bruna_carvalho</property>
     <mapping class="bean.CompraProdutoBlf"/>
     <mapping class="bean.FuncionarioBlf"/>
     <mapping class="bean.UsuarioBlf"/>

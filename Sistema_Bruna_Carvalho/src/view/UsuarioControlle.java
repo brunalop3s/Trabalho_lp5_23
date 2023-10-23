@@ -16,7 +16,7 @@ public class UsuarioControlle extends AbstractTableModel{//classe Usuario Contro
     public void setList(List lista) {
         this.lista = lista;
         // Método=> recebe lista como argumento = a var lista
-       // this.fireTableDataChanged();
+       this.fireTableDataChanged();
         
     }
     
