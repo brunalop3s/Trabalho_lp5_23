@@ -5,13 +5,16 @@
  */
 package view;
 
+import bean.CompraProdutoBlf;
 import bean.ProdutoBlf;
 import bean.UsuarioBlf;
 import dao.Produto_DAO;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JTable;
 import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.MaskFormatter;
 import tools.Util;
@@ -24,9 +27,8 @@ public class JDlgProdutoNovoIA extends javax.swing.JDialog {
     
     Produto_DAO produto_DAO;
     ProdutoControle produtoControle;
-
-    public JDlgProdutoNovoIA() {
-    }
+    ProdutoBlf produtoBlf;
+    JDlgProdutoNovo jDlgProdutoNovo;
 
     /**
      * Creates new form JDlgProdutoNovoIA
@@ -45,18 +47,21 @@ public class JDlgProdutoNovoIA extends javax.swing.JDialog {
 
         
     }
+    
+     public void setTelaAnterior(JDlgProdutoNovo jDlgProdutoNovo) {
+        this.jDlgProdutoNovo = jDlgProdutoNovo;
+
+    }
         
     
     public ProdutoBlf viewBean() {
         ProdutoBlf produtoBlf = new ProdutoBlf();
-        int id = Integer.valueOf(jTxtCodigo.getText());
-        produtoBlf.setIdProdutoBlf(id);
+        produtoBlf.setIdProdutoBlf(Util.strInt(jTxtCodigo.getText()));
         produtoBlf.setNomeBlf(jTxtNome.getText());
         produtoBlf.setMarcaBlf(jTxtMarca.getText());
         produtoBlf.setPrecoBlf(Util.strDouble(jTxtPreco.getText()));
         produtoBlf.setTamanhoBlf(jTxtTamanho.getText());
-        int quantidade = Integer.valueOf(jTxtQuantidade.getText());
-        produtoBlf.setQuantidadeBlf(quantidade);
+        produtoBlf.setIdProdutoBlf(Util.strInt(jTxtQuantidade.getText()));
         return produtoBlf;
 
        
@@ -64,16 +69,17 @@ public class JDlgProdutoNovoIA extends javax.swing.JDialog {
       
        
         public void beanView(ProdutoBlf produto) {
-        String cad = String.valueOf(produto.getIdProdutoBlf());
-        jTxtCodigo.setText(cad);        
+        jTxtCodigo.setText(Util.intStr(produto.getIdProdutoBlf()));          
         jTxtNome.setText(produto.getNomeBlf());
         jTxtMarca.setText(produto.getMarcaBlf());
-       // jTxtPreco.setText(produto.getPrecoBlf());
+        jTxtPreco.setText(Util.doubleStr(produto.getPrecoBlf()));
         jTxtTamanho.setText(produto.getTamanhoBlf());
-        String quant = String.valueOf(produto.getQuantidadeBlf());
-        jTxtQuantidade.setText(quant);
+        jTxtQuantidade.setText(Util.doubleStr(produto.getQuantidadeBlf()));
+        
 
         }
+        
+        
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -243,9 +249,22 @@ public class JDlgProdutoNovoIA extends javax.swing.JDialog {
 
     private void jBtnOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnOKActionPerformed
         // TODO add your handling code here:
-         ProdutoBlf produtoBlf = viewBean();
-          produto_DAO.insert(produtoBlf);
-          produto_DAO.update(produtoBlf);
+          produtoBlf = viewBean();
+         
+        ProdutoBlf produto = (ProdutoBlf) produto_DAO.list(produtoBlf.getIdProdutoBlf());
+        
+        jTxtCodigo.setText(Util.intStr(produto.getIdProdutoBlf()));          
+        jTxtNome.setText(produto.getNomeBlf());
+        jTxtMarca.setText(produto.getMarcaBlf());
+        jTxtPreco.setText(Util.doubleStr(produto.getPrecoBlf()));
+        jTxtTamanho.setText(produto.getTamanhoBlf());
+        jTxtQuantidade.setText(Util.doubleStr(produto.getQuantidadeBlf()));
+        
+        if (getTitle().toUpperCase().substring(0, 1).equals("I")) {
+           jDlgProdutoNovo.produtoControle.addBean(produtoBlf);
+        } else {            
+           jDlgProdutoNovo.produtoControle.updateBean(jDlgProdutoNovo.getSelectedRowProd(), produtoBlf);
+        }
         setVisible(false);
         
     }//GEN-LAST:event_jBtnOKActionPerformed

@@ -6,8 +6,8 @@
 package dao;
 
 import bean.FuncionarioBlf;
-import bean.ProdutoBlf;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
@@ -62,4 +62,34 @@ public class Funcionario_DAO extends DAOAbstract{
        return (ArrayList) lista;
     }
     
+      public List listNome(String nomeBlf){
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(FuncionarioBlf.class);
+        criteria.add(Restrictions.ilike("nomeBlf", "%" + nomeBlf + "%"));
+        List lista = criteria.list();
+        session.getTransaction().commit();
+        return lista;
+       
+    }
+    
+    public List listData(Date dataNascimentoBlf){
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(FuncionarioBlf.class);
+        criteria.add(Restrictions.eq("dataNascimentoBlf", dataNascimentoBlf));
+        List lista = criteria.list();
+        session.getTransaction().commit();
+        return lista;
+       
+    }
+    
+    public List listNomeData(String nomefBlf, Date dataNascimentoBlf){
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(FuncionarioBlf.class);
+         criteria.add(Restrictions.ilike("nomeBlf","%" + nomefBlf + "%"));
+        criteria.add(Restrictions.eq("dataNascimentoBlf", dataNascimentoBlf));
+        List lista = criteria.list();
+        session.getTransaction().commit();
+        return lista;
+       
+    }
 }

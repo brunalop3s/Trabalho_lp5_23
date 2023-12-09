@@ -1,18 +1,15 @@
 package bean;
-// Generated 15/09/2023 22:23:57 by Hibernate Tools 4.3.1
+// Generated 27/10/2023 20:56:57 by Hibernate Tools 4.3.1
 
 
-import java.math.BigDecimal;
+
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -32,25 +29,24 @@ public class CompraBlf  implements java.io.Serializable {
      private UsuarioBlf usuarioBlf;
      private Date dataCompraBlf;
      private double totalCompraBlf;
-     private String statusPagamentoBlf;
-     private String metodoPagamentoBlf;
     
+ 
 
     public CompraBlf() {
     }
 
 	
-    public CompraBlf(int idCompraBlf, FornecedorBlf fornecedorBlf, UsuarioBlf usuarioBlf, Date dataCompraBlf, double totalCompraBlf, String statusPagamentoBlf, String metodoPagamentoBlf) {
+    public CompraBlf(int idCompraBlf, FornecedorBlf fornecedorBlf, UsuarioBlf usuarioBlf, Date dataCompraBlf, double totalCompraBlf) {
         this.idCompraBlf = idCompraBlf;
         this.fornecedorBlf = fornecedorBlf;
         this.usuarioBlf = usuarioBlf;
         this.dataCompraBlf = dataCompraBlf;
         this.totalCompraBlf = totalCompraBlf;
-        this.statusPagamentoBlf = statusPagamentoBlf;
-        this.metodoPagamentoBlf = metodoPagamentoBlf;
+        
     }
+   
+     @Id 
 
-    @Id 
     
     @Column(name="id_compra_blf", unique=true, nullable=false)
     public int getIdCompraBlf() {
@@ -62,7 +58,7 @@ public class CompraBlf  implements java.io.Serializable {
     }
 
 @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="fk_fornecedor_blf", nullable=false)
+    @JoinColumn(name="fornecedor", nullable=false)
     public FornecedorBlf getFornecedorBlf() {
         return this.fornecedorBlf;
     }
@@ -72,7 +68,7 @@ public class CompraBlf  implements java.io.Serializable {
     }
 
 @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="fk_usuario_blf", nullable=false)
+    @JoinColumn(name="usuario", nullable=false)
     public UsuarioBlf getUsuarioBlf() {
         return this.usuarioBlf;
     }
@@ -102,22 +98,7 @@ public class CompraBlf  implements java.io.Serializable {
     }
 
     
-    @Column(name="statusPagamento_blf", nullable=false, length=10)
-    public String getStatusPagamentoBlf() {
-        return this.statusPagamentoBlf;
-    }
-    
-    public void setStatusPagamentoBlf(String statusPagamentoBlf) {
-        this.statusPagamentoBlf = statusPagamentoBlf;
-    }
-
-    
-    @Column(name="metodoPagamento_blf", nullable=false, length=45)
-    public String getMetodoPagamentoBlf() {
-        return this.metodoPagamentoBlf;
-    }
-    
-    public void setMetodoPagamentoBlf(String metodoPagamentoBlf) {
-        this.metodoPagamentoBlf = metodoPagamentoBlf;
-    }
+   
 }
+
+

@@ -1,15 +1,11 @@
 package bean;
-// Generated 15/09/2023 22:23:57 by Hibernate Tools 4.3.1
+// Generated 27/10/2023 20:56:57 by Hibernate Tools 4.3.1
 
 
-import java.math.BigDecimal;
-import java.util.HashSet;
-import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -28,7 +24,7 @@ public class ProdutoBlf  implements java.io.Serializable {
      private double precoBlf;
      private String tamanhoBlf;
      private int quantidadeBlf;
-     
+    
 
     public ProdutoBlf() {
     }
@@ -42,7 +38,7 @@ public class ProdutoBlf  implements java.io.Serializable {
         this.tamanhoBlf = tamanhoBlf;
         this.quantidadeBlf = quantidadeBlf;
     }
- 
+    
    
      @Id 
 
@@ -66,7 +62,7 @@ public class ProdutoBlf  implements java.io.Serializable {
         this.nomeBlf = nomeBlf;
     }
 
- 
+    
     @Column(name="marca_blf", nullable=false, length=30)
     public String getMarcaBlf() {
         return this.marcaBlf;
@@ -85,7 +81,8 @@ public class ProdutoBlf  implements java.io.Serializable {
     public void setPrecoBlf(double precoBlf) {
         this.precoBlf = precoBlf;
     }
-  
+
+    
     @Column(name="tamanho_blf", nullable=false, length=3)
     public String getTamanhoBlf() {
         return this.tamanhoBlf;
@@ -103,6 +100,23 @@ public class ProdutoBlf  implements java.io.Serializable {
     
     public void setQuantidadeBlf(int quantidadeBlf) {
         this.quantidadeBlf = quantidadeBlf;
+    }
+
+
+    public String toString() {
+        return getNomeBlf();
+    }
+
+     @Override
+    public boolean equals(Object object) {
+        if (object instanceof ProdutoBlf) {
+            ProdutoBlf produtoBlf = (ProdutoBlf) object;
+            if (this.getIdProdutoBlf()== produtoBlf.getIdProdutoBlf()) {
+                    return true;
+            } 
+        }
+         return false;
+    
     }
 
 }

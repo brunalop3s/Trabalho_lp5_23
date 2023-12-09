@@ -13,11 +13,9 @@ import java.util.logging.Logger;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
-import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-import javax.swing.text.MaskFormatter;
-import static tools.Util.dateStr;
+
 
 /**
  *
@@ -94,7 +92,7 @@ public class Util {
      }
       
      public static double strDouble(String cad){
-           return Integer.valueOf(cad);
+           return Double.valueOf(cad);
      }
       
        public static Date strDate(String cad){

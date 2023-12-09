@@ -1,15 +1,11 @@
 package bean;
-// Generated 15/09/2023 22:23:57 by Hibernate Tools 4.3.1
+// Generated 27/10/2023 20:56:57 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -38,7 +34,7 @@ public class UsuarioBlf  implements java.io.Serializable {
     }
 
 	
-    public UsuarioBlf(int idUsuarioBlf, String nomeBlf, String apelidoBlf, String cpfBlf, Date dataNascimentoBlf, String senhaBlf, int nivelBlf, String ativoBlf) {
+    public UsuarioBlf(int idUsuarioBlf, String nomeBlf, String apelidoBlf, String cpfBlf, Date dataNascimentoBlf, String senhaBlf, int nivelBlf) {
         this.idUsuarioBlf = idUsuarioBlf;
         this.nomeBlf = nomeBlf;
         this.apelidoBlf = apelidoBlf;
@@ -46,9 +42,18 @@ public class UsuarioBlf  implements java.io.Serializable {
         this.dataNascimentoBlf = dataNascimentoBlf;
         this.senhaBlf = senhaBlf;
         this.nivelBlf = nivelBlf;
-        this.ativoBlf = ativoBlf;
     }
-    
+    public UsuarioBlf(int idUsuarioBlf, String nomeBlf, String apelidoBlf, String cpfBlf, Date dataNascimentoBlf, String senhaBlf, int nivelBlf, String ativoBlf) {
+       this.idUsuarioBlf = idUsuarioBlf;
+       this.nomeBlf = nomeBlf;
+       this.apelidoBlf = apelidoBlf;
+       this.cpfBlf = cpfBlf;
+       this.dataNascimentoBlf = dataNascimentoBlf;
+       this.senhaBlf = senhaBlf;
+       this.nivelBlf = nivelBlf;
+       this.ativoBlf = ativoBlf;
+     
+    }
    
      @Id 
 
@@ -123,13 +128,30 @@ public class UsuarioBlf  implements java.io.Serializable {
     }
 
     
-    @Column(name="ativo_blf", nullable=false, length=1)
+    @Column(name="ativo_blf", length=1)
     public String getAtivoBlf() {
         return this.ativoBlf;
     }
     
     public void setAtivoBlf(String ativoBlf) {
         this.ativoBlf = ativoBlf;
+    }
+
+
+    public String toString() {
+        return getNomeBlf();
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (object instanceof UsuarioBlf) {
+            UsuarioBlf usuarioBlf = (UsuarioBlf) object;
+            if (this.getIdUsuarioBlf()== usuarioBlf.getIdUsuarioBlf()) {
+                    return true;
+            } 
+        }
+         return false;
+    
     }
 
 

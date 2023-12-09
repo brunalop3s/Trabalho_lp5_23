@@ -23,7 +23,7 @@ public class FuncionarioBlf  implements java.io.Serializable {
      private int idFuncionarioBlf;
      private String nomeBlf;
      private String apelidoBlf;
-     private String sexoBlf;
+     private int sexoBlf;
      private Date dataNascimentoBlf;
      private String cpfBlf;
      private String celularBlf;
@@ -39,7 +39,7 @@ public class FuncionarioBlf  implements java.io.Serializable {
     public FuncionarioBlf() {
     }
 
-    public FuncionarioBlf(int idFuncionarioBlf, String nomeBlf, String apelidoBlf, String sexoBlf, Date dataNascimentoBlf, String cpfBlf, String celularBlf, String telefoneResidencialBlf, String cepBlf, String enderecoBlf, String bairroBlf, String cidadeBlf, String ufBlf, String emailBlf, String ativoBlf) {
+    public FuncionarioBlf(int idFuncionarioBlf, String nomeBlf, String apelidoBlf, int sexoBlf, Date dataNascimentoBlf, String cpfBlf, String celularBlf, String telefoneResidencialBlf, String cepBlf, String enderecoBlf, String bairroBlf, String cidadeBlf, String ufBlf, String emailBlf, String ativoBlf) {
        this.idFuncionarioBlf = idFuncionarioBlf;
        this.nomeBlf = nomeBlf;
        this.apelidoBlf = apelidoBlf;
@@ -91,11 +91,11 @@ public class FuncionarioBlf  implements java.io.Serializable {
 
     
     @Column(name="sexo_blf", nullable=false, length=10)
-    public String getSexoBlf() {
+    public int getSexoBlf() {
         return this.sexoBlf;
     }
     
-    public void setSexoBlf(String sexoBlf) {
+    public void setSexoBlf(int sexoBlf) {
         this.sexoBlf = sexoBlf;
     }
 
@@ -213,5 +213,3 @@ public class FuncionarioBlf  implements java.io.Serializable {
 
 
 }
-
-

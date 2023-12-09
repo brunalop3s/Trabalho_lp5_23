@@ -62,4 +62,35 @@ public class Produto_DAO extends DAOAbstract{
        return (ArrayList) lista;
     }
     
+        public List listQuantidade(int quantidadeBlf){
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(ProdutoBlf.class);
+        criteria.add(Restrictions.eq("quantidadeBlf", quantidadeBlf));
+        List lista = criteria.list();
+        session.getTransaction().commit();
+        return lista;
+       
+    }
+    
+    public List listPreco(double precoBlf){
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(ProdutoBlf.class);
+        criteria.add(Restrictions.eq("precoBlf", precoBlf));
+        List lista = criteria.list();
+        session.getTransaction().commit();
+        return lista;
+       
+    }
+    
+    public List listQuantidadePreco(int quantidadeBlf, double precoBlf){
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(ProdutoBlf.class);
+         criteria.add(Restrictions.eq("quantidadeBlf", quantidadeBlf));
+        criteria.add(Restrictions.eq("precoBlf", precoBlf));
+        List lista = criteria.list();
+        session.getTransaction().commit();
+        return lista;
+       
+    }
+    
 }

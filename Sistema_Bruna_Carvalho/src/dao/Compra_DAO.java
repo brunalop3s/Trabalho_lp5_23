@@ -8,6 +8,7 @@ package dao;
 import bean.CompraBlf;
 import bean.FuncionarioBlf;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
@@ -60,6 +61,37 @@ public class Compra_DAO extends DAOAbstract{
        List lista = criteria.list();
        session.getTransaction().commit();
        return (ArrayList) lista;
+    }
+    
+         public List listTotalCompra(double totalCompraBlf){
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(CompraBlf.class);
+        criteria.add(Restrictions.eq("totalCompraBlf", totalCompraBlf));
+        List lista = criteria.list();
+        session.getTransaction().commit();
+        return lista;
+       
+    }
+    
+    public List listData(Date dataNascimentoBlf){
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(CompraBlf.class);
+        criteria.add(Restrictions.eq("dataNascimentoBlf", dataNascimentoBlf));
+        List lista = criteria.list();
+        session.getTransaction().commit();
+        return lista;
+       
+    }
+    
+    public List listDataTotal(double totalCompraBlf, Date dataNascimentoBlf){
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(CompraBlf.class);
+         criteria.add(Restrictions.eq("totalCompraBlf", totalCompraBlf));
+        criteria.add(Restrictions.eq("dataNascimentoBlf", dataNascimentoBlf));
+        List lista = criteria.list();
+        session.getTransaction().commit();
+        return lista;
+       
     }
     
 }

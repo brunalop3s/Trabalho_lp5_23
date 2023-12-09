@@ -5,6 +5,7 @@
  */
 package view;
 
+import bean.CompraProdutoBlf;
 import bean.ProdutoBlf;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
@@ -24,6 +25,21 @@ public class ProdutoControle extends AbstractTableModel{
         //M.P R.NúmLinha 
           
     }
+    
+    public void addBean(ProdutoBlf produtoBlf) {
+        lista.add(produtoBlf);
+        this.fireTableDataChanged();
+    }
+    
+     public void updateBean(int index, ProdutoBlf produtoBlf) {
+        lista.set(index, produtoBlf);
+        this.fireTableDataChanged();
+    }
+     
+      public void removeBean(int index){
+      lista.remove(index);
+      this.fireTableDataChanged();
+      }
     
     @Override
     public int getRowCount() {

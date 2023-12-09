@@ -41,10 +41,10 @@ Contributor(s):
 -->
 <hibernate-reverse-engineering>
   <schema-selection match-catalog="db_bruna_carvalho"/>
-  <table-filter match-name="usuario_blf"/>
-  <table-filter match-name="compra_produto_blf"/>
-  <table-filter match-name="fornecedor_blf"/>
   <table-filter match-name="produto_blf"/>
+  <table-filter match-name="compra_produto_blf"/>
   <table-filter match-name="compra_blf"/>
+  <table-filter match-name="usuario_blf"/>
   <table-filter match-name="funcionario_blf"/>
+  <table-filter match-name="fornecedor_blf"/>
 </hibernate-reverse-engineering>

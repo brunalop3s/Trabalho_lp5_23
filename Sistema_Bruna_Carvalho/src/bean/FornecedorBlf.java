@@ -2,13 +2,10 @@ package bean;
 // Generated 15/09/2023 22:23:57 by Hibernate Tools 4.3.1
 
 
-import java.util.HashSet;
-import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -152,8 +149,18 @@ public class FornecedorBlf  implements java.io.Serializable {
         this.emailBlf = emailBlf;
     }
 
-
-
+    public String toString() {
+        return getEmpresaOuPessoaBlf();
+    }
+    
+    @Override
+    public boolean equals(Object object) {
+        if (object instanceof FornecedorBlf) {
+            FornecedorBlf fornecedorBlf = (FornecedorBlf) object;
+            if (this.getIdFornecedorBlf()== fornecedorBlf.getIdFornecedorBlf()) {
+                    return true;
+            } 
+        }
+         return false;
+    }
 }
-
-

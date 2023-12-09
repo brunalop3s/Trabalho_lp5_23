@@ -54,7 +54,7 @@ public class FuncionarioControle extends AbstractTableModel{
             return funcionarioBlf.getCpfBlf();
         }
         if (columnIndex == 3) {
-            return funcionarioBlf.getCelularBlf();
+            return funcionarioBlf.getDataNascimentoBlf();
         }
         return "";
     }
@@ -71,7 +71,7 @@ public class FuncionarioControle extends AbstractTableModel{
             return "Cpf";
         }
         if (columnIndex == 3) {
-            return "N° Celular";
+            return "Data Nascimento";
         }
         return "";
     }

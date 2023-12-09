@@ -1,5 +1,6 @@
 package bean;
-// Generated 15/09/2023 22:23:57 by Hibernate Tools 4.3.1
+// Generated 27/10/2023 20:56:57 by Hibernate Tools 4.3.1
+
 
 
 import javax.persistence.Column;
@@ -24,12 +25,12 @@ public class CompraProdutoBlf  implements java.io.Serializable {
      private CompraBlf compraBlf;
      private ProdutoBlf produtoBlf;
      private int quantidadeBlf;
-     private int valorUnitarioBlf;
+     private double valorUnitarioBlf;
 
     public CompraProdutoBlf() {
     }
 
-    public CompraProdutoBlf(int idCompraProdutoBlf, CompraBlf compraBlf, ProdutoBlf produtoBlf, int quantidadeBlf, int valorUnitarioBlf) {
+    public CompraProdutoBlf(int idCompraProdutoBlf, CompraBlf compraBlf, ProdutoBlf produtoBlf, int quantidadeBlf, double valorUnitarioBlf) {
        this.idCompraProdutoBlf = idCompraProdutoBlf;
        this.compraBlf = compraBlf;
        this.produtoBlf = produtoBlf;
@@ -70,7 +71,7 @@ public class CompraProdutoBlf  implements java.io.Serializable {
     }
 
     
-    @Column(name="quantidade_Blf", nullable=false, length=45)
+    @Column(name="quantidade_Blf", nullable=false)
     public int getQuantidadeBlf() {
         return this.quantidadeBlf;
     }
@@ -80,12 +81,12 @@ public class CompraProdutoBlf  implements java.io.Serializable {
     }
 
     
-    @Column(name="valorUnitario_Blf", nullable=false, length=45)
-    public int getValorUnitarioBlf() {
+    @Column(name="valorUnitario_Blf", nullable=false, precision=10)
+    public double getValorUnitarioBlf() {
         return this.valorUnitarioBlf;
     }
     
-    public void setValorUnitarioBlf(int valorUnitarioBlf) {
+    public void setValorUnitarioBlf(double valorUnitarioBlf) {
         this.valorUnitarioBlf = valorUnitarioBlf;
     }
 

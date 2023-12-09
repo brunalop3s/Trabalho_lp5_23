@@ -54,15 +54,15 @@ public class JDlgFornecedor extends javax.swing.JDialog {
              mascaraTelefone = new MaskFormatter("(##) ####-#### ");
              mascaraCep = new MaskFormatter("#####-###");
            
-            
+         
              
         } catch  (ParseException ex) {
-            Logger.getLogger(JDlgUsuario.class.getName()).log(Level.SEVERE, null, ex);
-         
+            Logger.getLogger(JDlgFornecedor.class.getName()).log(Level.SEVERE, null, ex);
+        }
        jFmtCnpj.setFormatterFactory( new DefaultFormatterFactory( mascaraCnpj )); 
        jFmtTelefone.setFormatterFactory( new DefaultFormatterFactory(mascaraTelefone)); 
        jFmtCep.setFormatterFactory( new DefaultFormatterFactory(mascaraCep) );
-    }
+    
          
 }    
         public FornecedorBlf viewBean() {
@@ -238,9 +238,11 @@ public class JDlgFornecedor extends javax.swing.JDialog {
                             .addComponent(jLabel10)
                             .addComponent(jLabel1))
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jFmtCnpj, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTxtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jTxtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jFmtCnpj)
+                                .addGap(33, 33, 33))))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                             .addComponent(jLabel4)

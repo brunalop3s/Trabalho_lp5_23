@@ -76,7 +76,7 @@ public class JDlgFuncionarioNovoIA extends javax.swing.JDialog {
         funcionarioBlf.setNomeBlf(jTxtNome.getText());
         funcionarioBlf.setApelidoBlf(jTxtApelido.getText());
         
-        //funcionarioBlf.setSexoBlf(jCboSexo.getSelectedIndex());
+        funcionarioBlf.setSexoBlf(jCboSexo.getSelectedIndex());
 
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
         try {
@@ -110,7 +110,7 @@ public class JDlgFuncionarioNovoIA extends javax.swing.JDialog {
         jTxtCodigo.setText(cad);        
         jTxtNome.setText(funcionarioBlf.getNomeBlf());
         jTxtApelido.setText(funcionarioBlf.getApelidoBlf());
-        //jCboSexo.setSelectedIndex(funcionarioBlf.getSexoBlf());
+        jCboSexo.setSelectedIndex(funcionarioBlf.getSexoBlf());
         
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
         jFmtDataNascimento.setText( formato.format(funcionarioBlf.getDataNascimentoBlf()));

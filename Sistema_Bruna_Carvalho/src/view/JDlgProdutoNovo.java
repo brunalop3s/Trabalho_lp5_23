@@ -5,10 +5,12 @@
  */
 package view;
 
+import bean.CompraProdutoBlf;
 import bean.ProdutoBlf;
 import bean.UsuarioBlf;
 import dao.Produto_DAO;
 import dao.Usuario_DAO;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JTable;
 import tools.Util;
@@ -38,11 +40,18 @@ public class JDlgProdutoNovo extends javax.swing.JDialog {
          jDlgProdutoNovoIA = new JDlgProdutoNovoIA(null, true);
         produtoControle = new ProdutoControle();
         produto_DAO = new Produto_DAO();
-        List lista = produto_DAO.listAll();
+        
+         List lista = produto_DAO.listAll();
         produtoControle.setList(lista);
         jTablel.setModel(produtoControle);
+        
+       
     }
-
+    
+    
+    public int getSelectedRowProd() {
+        return jTablel.getSelectedRow();
+    }
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -131,12 +140,13 @@ public class JDlgProdutoNovo extends javax.swing.JDialog {
 
     private void jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarActionPerformed
         // TODO add your handling code here:
-        jDlgProdutoNovoIA.setTitle("Alteração");
-        int rowSel = jTablel.getSelectedRow();
-        ProdutoBlf produtoBlf =  produtoControle.getBean(rowSel);
-        jDlgProdutoNovoIA.beanView(produtoBlf);
-        
-        jDlgProdutoNovoIA.setVisible(true);
+       jDlgProdutoNovoIA = new JDlgProdutoNovoIA(null, true);
+       jDlgProdutoNovoIA.setTitle("Alteração de Produtos");
+       jDlgProdutoNovoIA.setTelaAnterior(this);
+       int linSel = jTablel.getSelectedRow();
+       produtoBlf = (ProdutoBlf) produtoControle.getBean(linSel);
+       jDlgProdutoNovoIA.beanView(produtoBlf);
+       jDlgProdutoNovoIA.setVisible(true);
     }//GEN-LAST:event_jBtnAlterarActionPerformed
 
     private void jBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirActionPerformed

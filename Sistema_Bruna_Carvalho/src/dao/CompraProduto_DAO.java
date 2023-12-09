@@ -5,8 +5,10 @@
  */
 package dao;
 
+import bean.CompraBlf;
 import bean.CompraProdutoBlf;
 import bean.FuncionarioBlf;
+import bean.ProdutoBlf;
 import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Criteria;
@@ -62,4 +64,42 @@ public class CompraProduto_DAO extends DAOAbstract{
        return (ArrayList) lista;
     }
     
+        public List listQuantidade(int quantidadeBlf){
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(CompraProdutoBlf.class);
+        criteria.add(Restrictions.eq("quantidadeBlf", quantidadeBlf));
+        List lista = criteria.list();
+        session.getTransaction().commit();
+        return lista;
+       
+    }
+    
+    public List listValorUnitario(double valorUnitarioBlf){
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(CompraProdutoBlf.class);
+        criteria.add(Restrictions.eq("valorUnitarioBlf", valorUnitarioBlf));
+        List lista = criteria.list();
+        session.getTransaction().commit();
+        return lista;
+       
+    }
+    
+    public List listQuantidadeValorUnitario(int quantidadeBlf, double valorUnitarioBlf){
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(CompraProdutoBlf.class);
+         criteria.add(Restrictions.eq("quantidadeBlf", quantidadeBlf));
+        criteria.add(Restrictions.eq("valorUnitarioBlf", valorUnitarioBlf));
+        List lista = criteria.list();
+        session.getTransaction().commit();
+        return lista;
+       
+    }
+     public Object listProd(CompraBlf compraBlf) {
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(CompraProdutoBlf.class);
+        criteria.add(Restrictions.eq("compraBlf", compraBlf));
+        List lista = criteria.list();
+        session.getTransaction().commit();
+        return lista;
+    }
 }

@@ -25,8 +25,8 @@ public class JDlgUsuario extends javax.swing.JDialog {
     MaskFormatter mascaraCpf;  
     MaskFormatter mascaraDataNascimento;
     //variaveis usadas para formatação de caompos formatados
-    public UsuarioBlf usuarioBlf;
-    public Usuario_DAO usuario_DAO;
+    UsuarioBlf usuarioBlf;
+    Usuario_DAO usuario_DAO;
     
 
     /**
@@ -63,38 +63,40 @@ public class JDlgUsuario extends javax.swing.JDialog {
     
     
     
-    public UsuarioBlf viewBean() {
+   public UsuarioBlf viewBean() {
         UsuarioBlf usuarioBlf = new UsuarioBlf();
-        int id = Integer.valueOf(jTxtCodigo.getText());
-        usuarioBlf.setIdUsuarioBlf(id); 
+        usuarioBlf.setIdUsuarioBlf(Util.strInt(jTxtCodigo.getText())); 
         usuarioBlf.setNomeBlf(jTxtNome.getText());
         usuarioBlf.setApelidoBlf(jTxtApelido.getText());
         usuarioBlf.setCpfBlf(jFmtCpf.getText());    
         usuarioBlf.setSenhaBlf(jPwfSenha.getText());
         usuarioBlf.setDataNascimentoBlf(Util.strDate(jFmtDataNascimento.getText()));
         usuarioBlf.setNivelBlf(jCboNivel.getSelectedIndex());
-        usuarioBlf.setAtivoBlf(jChbAtivo.isSelected() == true ? "S" : "N");
+         if (jChbAtivo.isSelected() == true) {
+            usuarioBlf.setAtivoBlf("S");
+        } else {
+            usuarioBlf.setAtivoBlf("N");
+        }
       
     return usuarioBlf;
     }
     
     
      public void beanView(UsuarioBlf usuarioBlf) {
-        String cad = String.valueOf(usuarioBlf.getIdUsuarioBlf());
-        jTxtCodigo.setText(cad);   
+        jTxtCodigo.setText(Util.intStr(usuarioBlf.getIdUsuarioBlf()));   
         jTxtNome.setText(usuarioBlf.getNomeBlf());
         jTxtApelido.setText(usuarioBlf.getApelidoBlf());
         jFmtCpf.setText(usuarioBlf.getCpfBlf());
         jPwfSenha.setText(usuarioBlf.getSenhaBlf());
-        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-        jFmtDataNascimento.setText( formato.format(usuarioBlf.getDataNascimentoBlf()));
+        jFmtDataNascimento.setText( Util.dateStr(usuarioBlf.getDataNascimentoBlf()));
         
         jCboNivel.setSelectedIndex(usuarioBlf.getNivelBlf());
-        if (usuarioBlf.getAtivoBlf().equals("S") == true) {
+       if (usuarioBlf.getAtivoBlf().equals("S") == true) {
             jChbAtivo.setSelected(true);
         } else {
             jChbAtivo.setSelected(false);
         }
+       
     }
     
     
@@ -187,6 +189,12 @@ public class JDlgUsuario extends javax.swing.JDialog {
         jCboNivel.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Adimistrador", "Comvidado", "Financeiro" }));
 
         jChbAtivo.setText("Ativo");
+
+        jFmtDataNascimento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jFmtDataNascimentoActionPerformed(evt);
+            }
+        });
 
         jLabel6.setText("Apelido");
 
@@ -383,6 +391,10 @@ public class JDlgUsuario extends javax.swing.JDialog {
         Util.habilitar(true,  jBtnCancelar, jBtnAlterar, jBtnExcluir, jBtnPesquisar);
 
     }//GEN-LAST:event_jBtnPesquisarActionPerformed
+
+    private void jFmtDataNascimentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFmtDataNascimentoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jFmtDataNascimentoActionPerformed
 
     /**
      * @param args the command line arguments
