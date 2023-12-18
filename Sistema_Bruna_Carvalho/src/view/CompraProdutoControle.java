@@ -34,7 +34,7 @@ public class CompraProdutoControle extends AbstractTableModel {
 
     @Override
     public int getColumnCount() {
-        return 4;
+        return 3;
     }
     
     public void addBean(CompraProdutoBlf compraProdutoBlf) {
@@ -56,6 +56,7 @@ public class CompraProdutoControle extends AbstractTableModel {
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         CompraProdutoBlf compraProdutoBlf = (CompraProdutoBlf) lista.get(rowIndex);
+        
      
         if (columnIndex == 0) {
             return compraProdutoBlf.getProdutoBlf();
@@ -66,9 +67,9 @@ public class CompraProdutoControle extends AbstractTableModel {
         if (columnIndex == 2) {
             return compraProdutoBlf.getValorUnitarioBlf();
         }
-         if (columnIndex == 3) {
-            return compraProdutoBlf.getCompraBlf();
-        }
+         //if (columnIndex == 3) {
+           // return compraProdutoBlf.getTotalBlf();
+       // }
         
         
         return "";
@@ -86,9 +87,9 @@ public class CompraProdutoControle extends AbstractTableModel {
         if (columnIndex == 2) {
             return "Valor Unitario";
         }
-        if (columnIndex == 3) {
-            return "Valor Total";
-        }
+//        if (columnIndex == 3) {
+//            return "Valor Total";
+//        }
         return "";
     }
 }

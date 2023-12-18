@@ -134,11 +134,15 @@ public class JDlgFuncionarioNovo extends javax.swing.JDialog {
     private void jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarActionPerformed
         // TODO add your handling code here:
        jDlgFuncionarioNovoIA.setTitle("Alteração");
+       
         int rowSel = jTable1.getSelectedRow();
         FuncionarioBlf funcionarioBlf =  funcionarioControle.getBean(rowSel);
         jDlgFuncionarioNovoIA.beanView(funcionarioBlf);
         
         jDlgFuncionarioNovoIA.setVisible(true);
+        
+            
+
     }//GEN-LAST:event_jBtnAlterarActionPerformed
 
     private void jBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirActionPerformed

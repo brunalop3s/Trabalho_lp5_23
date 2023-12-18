@@ -6,6 +6,7 @@
 package view;
 
 import bean.CompraProdutoBlf;
+import bean.FuncionarioBlf;
 import bean.ProdutoBlf;
 import bean.UsuarioBlf;
 import dao.Produto_DAO;
@@ -49,9 +50,7 @@ public class JDlgProdutoNovo extends javax.swing.JDialog {
     }
     
     
-    public int getSelectedRowProd() {
-        return jTablel.getSelectedRow();
-    }
+   
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -135,18 +134,19 @@ public class JDlgProdutoNovo extends javax.swing.JDialog {
         jDlgProdutoNovoIA.setVisible(true);
         List lista = produto_DAO.listAll();
         produtoControle.setList(lista);
-
+        
     }//GEN-LAST:event_jBtnIncluirActionPerformed
 
     private void jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarActionPerformed
         // TODO add your handling code here:
-       jDlgProdutoNovoIA = new JDlgProdutoNovoIA(null, true);
        jDlgProdutoNovoIA.setTitle("Alteração de Produtos");
-       jDlgProdutoNovoIA.setTelaAnterior(this);
-       int linSel = jTablel.getSelectedRow();
-       produtoBlf = (ProdutoBlf) produtoControle.getBean(linSel);
-       jDlgProdutoNovoIA.beanView(produtoBlf);
+       int rowSel = jTablel.getSelectedRow();
+        ProdutoBlf produtoBlf =  produtoControle.getBean(rowSel);
+        jDlgProdutoNovoIA.beanView(produtoBlf);
+        
        jDlgProdutoNovoIA.setVisible(true);
+       List lista = produto_DAO.listAll();
+        produtoControle.setList(lista);
     }//GEN-LAST:event_jBtnAlterarActionPerformed
 
     private void jBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirActionPerformed

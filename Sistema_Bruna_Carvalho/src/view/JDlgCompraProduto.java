@@ -23,6 +23,7 @@ public class JDlgCompraProduto extends javax.swing.JDialog {
         CompraProduto_DAO compraProduto_DAO;
         JDlgCompra jDlgCompra;
         ProdutoBlf produtoBlf;
+   
        
     /**
      * Creates new form JDlgPedidosProduto
@@ -59,8 +60,7 @@ public class JDlgCompraProduto extends javax.swing.JDialog {
         jCboProduto.setSelectedItem(compraProdutoBlf.getProdutoBlf());   
         jTxtQuantidade.setText( Util.intStr(compraProdutoBlf.getQuantidadeBlf()));
         jTxtValorUnitario.setText( Util.doubleStr(compraProdutoBlf.getValorUnitarioBlf()));
-      
-    
+        
     }
 
     /**
@@ -108,6 +108,12 @@ public class JDlgCompraProduto extends javax.swing.JDialog {
         jTxtValorUnitario.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTxtValorUnitarioKeyReleased(evt);
+            }
+        });
+
+        jTxtTotal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTxtTotalActionPerformed(evt);
             }
         });
 
@@ -231,6 +237,10 @@ public class JDlgCompraProduto extends javax.swing.JDialog {
             jTxtTotal.setText("0");
         }
     }//GEN-LAST:event_jTxtValorUnitarioKeyReleased
+
+    private void jTxtTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtTotalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTxtTotalActionPerformed
 
     /**
      * @param args the command line arguments

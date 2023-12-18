@@ -362,9 +362,18 @@ public class JDlgFuncionarioNovoIA extends javax.swing.JDialog {
 
     private void jBtnOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnOKActionPerformed
         // TODO add your handling code here:
-         FuncionarioBlf funcionarioBlf = viewBean();
-          funcionario_DAO.insert(funcionarioBlf);
-          funcionario_DAO.update(funcionarioBlf);
+        FuncionarioBlf funcionarioBlf = viewBean();
+         if (getTitle().toUpperCase().substring(0, 1).equals("I")) {
+            funcionario_DAO.insert(funcionarioBlf);
+        } else {            
+            funcionario_DAO.update(funcionarioBlf);
+             List lista = funcionario_DAO.listAll();
+             funcionarioControle.setList(lista);
+            
+        }
+         
+        
+         
         setVisible(false);
         
     }//GEN-LAST:event_jBtnOKActionPerformed

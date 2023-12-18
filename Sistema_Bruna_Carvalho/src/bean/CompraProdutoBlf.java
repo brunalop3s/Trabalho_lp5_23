@@ -6,6 +6,8 @@ package bean;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -26,6 +28,7 @@ public class CompraProdutoBlf  implements java.io.Serializable {
      private ProdutoBlf produtoBlf;
      private int quantidadeBlf;
      private double valorUnitarioBlf;
+  
 
     public CompraProdutoBlf() {
     }
@@ -36,9 +39,10 @@ public class CompraProdutoBlf  implements java.io.Serializable {
        this.produtoBlf = produtoBlf;
        this.quantidadeBlf = quantidadeBlf;
        this.valorUnitarioBlf = valorUnitarioBlf;
+      
     }
    
-     @Id 
+     @Id @GeneratedValue(strategy=GenerationType.AUTO) 
 
     
     @Column(name="id_compraProduto_blf", unique=true, nullable=false)
@@ -89,6 +93,8 @@ public class CompraProdutoBlf  implements java.io.Serializable {
     public void setValorUnitarioBlf(double valorUnitarioBlf) {
         this.valorUnitarioBlf = valorUnitarioBlf;
     }
+    
+    
 
 
 

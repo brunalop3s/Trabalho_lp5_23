@@ -61,7 +61,7 @@ public class JDlgProdutoNovoIA extends javax.swing.JDialog {
         produtoBlf.setMarcaBlf(jTxtMarca.getText());
         produtoBlf.setPrecoBlf(Util.strDouble(jTxtPreco.getText()));
         produtoBlf.setTamanhoBlf(jTxtTamanho.getText());
-        produtoBlf.setIdProdutoBlf(Util.strInt(jTxtQuantidade.getText()));
+        produtoBlf.setQuantidadeBlf(Util.strInt(jTxtQuantidade.getText()));
         return produtoBlf;
 
        
@@ -74,7 +74,7 @@ public class JDlgProdutoNovoIA extends javax.swing.JDialog {
         jTxtMarca.setText(produto.getMarcaBlf());
         jTxtPreco.setText(Util.doubleStr(produto.getPrecoBlf()));
         jTxtTamanho.setText(produto.getTamanhoBlf());
-        jTxtQuantidade.setText(Util.doubleStr(produto.getQuantidadeBlf()));
+        jTxtQuantidade.setText(Util.intStr(produto.getQuantidadeBlf()));
         
 
         }
@@ -250,23 +250,15 @@ public class JDlgProdutoNovoIA extends javax.swing.JDialog {
     private void jBtnOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnOKActionPerformed
         // TODO add your handling code here:
           produtoBlf = viewBean();
-         
-        ProdutoBlf produto = (ProdutoBlf) produto_DAO.list(produtoBlf.getIdProdutoBlf());
-        
-        jTxtCodigo.setText(Util.intStr(produto.getIdProdutoBlf()));          
-        jTxtNome.setText(produto.getNomeBlf());
-        jTxtMarca.setText(produto.getMarcaBlf());
-        jTxtPreco.setText(Util.doubleStr(produto.getPrecoBlf()));
-        jTxtTamanho.setText(produto.getTamanhoBlf());
-        jTxtQuantidade.setText(Util.doubleStr(produto.getQuantidadeBlf()));
-        
-        if (getTitle().toUpperCase().substring(0, 1).equals("I")) {
-           jDlgProdutoNovo.produtoControle.addBean(produtoBlf);
+          if (getTitle().toUpperCase().substring(0, 1).equals("I")) {
+            produto_DAO.insert(produtoBlf);
+            
         } else {            
-           jDlgProdutoNovo.produtoControle.updateBean(jDlgProdutoNovo.getSelectedRowProd(), produtoBlf);
+            produto_DAO.update(produtoBlf);
         }
-        setVisible(false);
         
+         setVisible(false);
+          
     }//GEN-LAST:event_jBtnOKActionPerformed
 
     private void jBtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelarActionPerformed

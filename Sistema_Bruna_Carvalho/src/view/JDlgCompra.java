@@ -121,7 +121,7 @@ public class JDlgCompra extends javax.swing.JDialog {
         jCboFKFornecedor.setSelectedItem(compraBlf.getFornecedorBlf());
         jTxtTotal.setText(Util.doubleStr(compraBlf.getTotalCompraBlf()));  
     
-        CompraProdutoControle compraProdutoControle = new CompraProdutoControle();
+        
         List listProd = (List) compraProduto_DAO.listProd(compraBlf);
         compraProdutoControle.setList(listProd);
     }
@@ -405,25 +405,27 @@ public class JDlgCompra extends javax.swing.JDialog {
         if (incluindo == true) {
             compra_DAO.insert(compraBlf);
             
+            CompraProdutoBlf compraProdutoBlf;
             for (int linha = 0; linha < jTablel.getRowCount(); linha++) {
                 compraProdutoBlf = compraProdutoControle.getBean(linha);
                 compraProdutoBlf.setCompraBlf(compraBlf);
                 compraProduto_DAO.insert(compraProdutoBlf);
             }
+            
+        habilitar(false);
+        Util.limparCampos(jTxtCompra, jFmtDataCompra, jCboFkUsuario,jCboFKFornecedor, jTxtTotal);
+        compraProdutoControle.setList(new ArrayList());
+        compraBlf = null;
         } else {
             compra_DAO.update(compraBlf);
             //remover todos os pedidos produtos deste pedido
             
-           for (int linha = 0; linha < jTablel.getRowCount(); linha++) {
-                    compraProdutoBlf = compraProdutoControle.getBean(linha);
-                    compraProdutoBlf.setCompraBlf(compraBlf);
-                    compraProduto_DAO.delete(compraProdutoBlf);
-                }
+           
 
             //incluir todos os pedidosProduto que estao no jtable
            for (int linha = 0; linha < jTablel.getRowCount(); linha++) {
                 compraProdutoBlf = compraProdutoControle.getBean(linha);
-               
+               compraProdutoBlf.setCompraBlf(compraBlf);
                 compraProduto_DAO.insert(compraProdutoBlf);
         }
         habilitar(false);
@@ -431,7 +433,7 @@ public class JDlgCompra extends javax.swing.JDialog {
         compraProdutoControle.setList(new ArrayList());
 
         compraBlf = null;
-        
+        }
     }//GEN-LAST:event_jBtnConfirmarActionPerformed
 
     private void jBtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelarActionPerformed
